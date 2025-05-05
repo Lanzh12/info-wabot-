@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOT WHATSAPP FREE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #FD79A8;
+            --dark: #2D3436;
+            --light: #F5F6FA;
+            --premium: #FDCB6E;
+            --free: #00B894;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .header h2 {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .bot-list {
+            padding: 20px;
+        }
+        
+        .bot-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: rgba(108, 92, 231, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .bot-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .bot-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .bot-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .bot-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .bot-status {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .online {
+            color: var(--free);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .online::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--free);
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .premium {
+            background-color: var(--premium);
+            color: var(--dark);
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        .free {
+            background-color: var(--free);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        
+        .link-section {
+            padding: 0 20px 20px;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: rgba(253, 121, 168, 0.1);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .link-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .link-text {
+            font-weight: 600;
+        }
+        
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        
+        .footer p {
+            margin-bottom: 5px;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 15px;
+            padding: 20px;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .modal-body {
+            margin-bottom: 20px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5649c0;
+        }
+        
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--dark);
+            margin-right: 10px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CLOUD BOT GRATIS</h1>
+            <h2>BOT WHATSAPP CLOUD</h2>
+        </div>
+        
+        <div class="bot-list">
+            <div class="bot-item" onclick="openBotModal('coming soon ')">
+                <div class="bot-info">
+                    <div class="bot-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bot-name">coming soon</div>
+                </div>
+                <div class="bot-status">
+                    <div class="online">Online</div>
+                    <div class="premium">Premium</div>
+                </div>
+            </div>
+            
+            <div class="bot-item" onclick="openBotModal('coming soon ')">
+                <div class="bot-info">
+                    <div class="bot-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bot-name">coming soon </div>
+                </div>
+                <div class="bot-status">
+                    <div class="online">Online</div>
+                    <div class="premium">Premium</div>
+                </div>
+            </div>
+            
+            <div class="bot-item" onclick="openBotModal('coming soon ')">
+                <div class="bot-info">
+                    <div class="bot-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bot-name">coming soon </div>
+                </div>
+                <div class="bot-status">
+                    <div class="online">Online</div>
+                    <div class="free">Free</div>
+                </div>
+            </div>
+            
+            <div class="bot-item" onclick="openBotModal('coming soon ')">
+                <div class="bot-info">
+                    <div class="bot-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bot-name">coming soon</div>
+                </div>
+                <div class="bot-status">
+                    <div class="online">Online</div>
+                    <div class="premium">Premium</div>
+                </div>
+            </div>
+            
+            <div class="bot-item" onclick="openBotModal('Takina Asisten')">
+                <div class="bot-info">
+                    <div class="bot-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bot-name">Takina asisten</div>
+                </div>
+                <div class="bot-status">
+                    <div class="offline">offline</div>
+                    <div class="premium">Premium</div>
+                </div>
+            </div>
+            
+            <div class="bot-item" onclick="openBotModal('Elaina asisten')">
+                <div class="bot-info">
+                    <div class="bot-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bot-name">Elaina Asisten</div>
+                </div>
+                <div class="bot-status">
+                    <div class="online">Online</div>
+                    <div class="free">Free</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="link-section">
+            <div class="link-item" onclick="openLinkModal('Saluran Pengumuman')">
+                <div class="link-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div class="link-text">Saluran Pengumuman</div>
+            </div>
+            
+            <div class="link-item" onclick="openLinkModal('Sadibot WhatsApp')">
+                <div class="link-icon">
+                    <i class="fas fa-whatsapp"></i>
+                </div>
+                <div class="link-text">Group WhatsApp</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Make with ♥ by LamzOffc</p>
+            <p>Version: 25/06/2025</p>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal" id="botModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="botModalTitle">Hanabi (Sparkle)</div>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Status: <span class="online">Off kalo eror</span></p>
+                <p>Tipe: <span class="premium">Free</span></p>
+                <p>Deskripsi: Bot WhatsApp canggih dengan fitur premium</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
+                <button class="btn btn-primary">Gunakan Bot</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="linkModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="linkModalTitle">Saluran Pengumuman</div>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="linkModalDesc">Info Update Seputar Arisu Soft</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
+                <button class="btn btn-primary">Kunjungi</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openBotModal(botName) {
+            const modal = document.getElementById('botModal');
+            const title = document.getElementById('botModalTitle');
+            
+            title.textContent = botName;
+            modal.style.display = 'flex';
+        }
+        
+        function openLinkModal(linkName) {
+            const modal = document.getElementById('linkModal');
+            const title = document.getElementById('linkModalTitle');
+            const desc = document.getElementById('linkModalDesc');
+            
+            title.textContent = linkName;
+            
+            if (linkName === 'Saluran Pengumuman') {
+                desc.textContent = 'Info Update Seputar Arisu Soft';
+            } else if (linkName === 'Sadibot WhatsApp') {
+                desc.textContent = 'Aktifkan bot WhatsApp Sendiri';
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('botModal').style.display = 'none';
+            document.getElementById('linkModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+  </html
